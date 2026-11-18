@@ -1,0 +1,7 @@
+export const AUTH_CONFIG = {
+  SALT_ROUNDS: 10,
+  PASSWORD_MIN: 8,
+  PASSWORD_MAX: 72,
+  NAME_MIN: 2,
+  NAME_MAX: 50,
+};

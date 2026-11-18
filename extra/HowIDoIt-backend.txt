@@ -48,3 +48,7 @@ before moving further our main content code (project manager app) will lie in fe
 
 
 =================================================================================================================================================
+
+Phase 2a: (Backend) : Authentication
+-> npm install bcryptjs jsonwebtoken
+-> node -p "require('crypto').randomBytes(32).toString('hex')"
