@@ -1,0 +1,50 @@
+1. create 1 main folder -> project-management-app
+
+2. created 2 sub-folder -> frontend and backend
+
+3. first i am going to build backend then i am going to build frontend
+
+//backend
+
+=============================================================================================
+Phase - 1 : Backend setup, env validation, database connection, error handling.
+
+4. change the directory to backend (now thats our main directory)
+5. npm init -y
+6. npm install  express (api framwork) 
+                mongoose (for defining modal) 
+                cors (for connecting frontend and backend) 
+                dotenv (for keeping secure env variables) 
+                zod (for input validation)
+                
+7. npm install -D (development dependency not required in production) 
+        nodemon (for restart automatically the server)
+
+//now before writing any code , 
+1. i want to mention that i am going to use feature based architecture (rather then conventional architecture)
+2. update (add) scripts in package.json -> "dev" : "nodemon src/server.js"
+                                        -> "start": "node src/server.js"
+                                        ->  "type": "module",
+3. now create some folders or files in server to run atleast backend successfully 
+
+so currently my directory tree is looks like that (using file-tree-generator VS CODE EXTENSION)                        
+
+src
+ ┣ app
+ ┃ ┣ app.js
+ ┃ ┗ server.js
+ ┣ features
+ ┃ ┗ .gitkeep
+ ┗ shared
+ ┃ ┣ config
+ ┃ ┃ ┣ db.js
+ ┃ ┃ ┗ env.js
+ ┃ ┣ middlewares
+ ┃ ┃ ┗ error.middleware.js
+ ┃ ┗ utils
+ ┃ ┃ ┗ AppError.js
+
+before moving further our main content code (project manager app) will lie in featurs/ folder (thats the beauty of feature based architecture)
+
+
+=================================================================================================================================================
