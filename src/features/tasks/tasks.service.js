@@ -1,10 +1,16 @@
 import { AppError } from "../../shared/utils/AppError.js";
 import { findOwnedProject } from "../projects/projects.service.js";
 import { Task } from "./task.model.js";
+import { sortTasks } from "./tasks.sort.js";
 
-export async function listTasks(userId, projectId) {
+export async function listTasks(userId, projectId, { status, sortBy, order }) {
   await findOwnedProject(userId, projectId);
-  return Task.find({ project: projectId }).sort({ createdAt: -1 });
+
+  const filter = { project: projectId };
+  if (status) filter.status = status;
+
+  const tasks = await Task.find(filter);
+  return sortTasks(tasks, sortBy, order);
 }
 
 export async function createTask(userId, projectId, data) {

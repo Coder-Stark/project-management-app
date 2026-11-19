@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { projectIdParamSchema } from "../projects/projects.validation.js";
-import { TASK_CONFIG, TASK_STATUSES } from "./tasks.config.js";
+import { SORT_ORDERS, TASK_CONFIG, TASK_SORT_FIELDS, TASK_STATUSES } from "./tasks.config.js";
 
 const title = z
   .string("Title is required")
@@ -44,4 +44,10 @@ export const updateTaskSchema = z
 
 export const taskParamsSchema = projectIdParamSchema.extend({
   taskId: z.string().regex(/^[0-9a-fA-F]{24}$/, "Invalid task id"),
+});
+
+export const listTasksQuerySchema = z.object({
+  status: status.optional(),
+  sortBy: z.enum(TASK_SORT_FIELDS, "Sort field must be createdAt or dueDate").default("createdAt"),
+  order: z.enum(SORT_ORDERS, "Order must be asc or desc").default("desc"),
 });

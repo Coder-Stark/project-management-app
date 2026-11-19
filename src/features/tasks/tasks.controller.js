@@ -1,7 +1,11 @@
 import { listTasks, createTask, updateTask, deleteTask } from "./tasks.service.js";
 
 export async function list(req, res) {
-  const tasks = await listTasks(req.user.id, req.validated.params.projectId);
+  const tasks = await listTasks(
+    req.user.id,
+    req.validated.params.projectId,
+    req.validated.query
+  );
   res.json({ tasks });
 }
 
