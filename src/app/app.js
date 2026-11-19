@@ -4,6 +4,7 @@ import {env} from '../shared/config/env.js';
 import { notFound, errorHandler } from '../shared/middlewares/error.middleware.js';
 import authRoutes from '../features/auth/auth.routes.js';
 import projectRoutes from '../features/projects/projects.routes.js';
+import taskRoutes from '../features/tasks/tasks.routes.js';
 
 const app = express();
 
@@ -19,6 +20,7 @@ app.get('/api/health', (req, res) => {
 //our routes
 app.use('/api/auth', authRoutes);
 app.use('/api/projects', projectRoutes);
+app.use('/api/projects/:projectId/tasks', taskRoutes);
 
 
 //error handler routes

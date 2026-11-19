@@ -1,4 +1,6 @@
+import mongoose from "mongoose";
 import { AppError } from "../../shared/utils/AppError.js";
+import { Task } from "../tasks/task.model.js";
 import { Project } from "./project.model.js";
 
 export async function findOwnedProject(userId, projectId) {
@@ -30,6 +32,20 @@ export async function updateProject(userId, projectId, updates) {
 }
 
 export async function deleteProject(userId, projectId) {
-  const result = await Project.deleteOne({ _id: projectId, owner: userId });
-  if (result.deletedCount === 0) throw AppError("Project not found", 404);
+  const session = await mongoose.startSession();
+
+  try {
+    // Both deletes succeed together, or neither is saved.
+    await session.withTransaction(async () => {
+      const result = await Project.deleteOne(
+        { _id: projectId, owner: userId },
+        { session }
+      );
+      if (result.deletedCount === 0) throw AppError("Project not found", 404);
+
+      await Task.deleteMany({ project: projectId }, { session });
+    });
+  } finally {
+    await session.endSession();
+  }
 }
