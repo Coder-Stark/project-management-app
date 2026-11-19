@@ -8,9 +8,9 @@ import taskRoutes from '../features/tasks/tasks.routes.js';
 
 const app = express();
 
-// app.use(cors({origin: env.CLIENT_URL, credentials: true}));
+// app.use(cors());              //For development only
+app.use(cors({ origin: env.CLIENT_URL }));   //For production
 
-app.use(cors());
 app.use(express.json());
 
 app.get('/api/health', (req, res) => {

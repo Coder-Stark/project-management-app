@@ -117,3 +117,10 @@ src
 ┗ features
   ┗ tasks
     ┗ tasks.sort.js
+
+=============================================================
+
+Phase 6: CORS and docs | Restricted CORS to `CLIENT_URL`. Wrote this README and `.env.example`. 
+
+
+=========================== PROJECT DONE =========================================================
